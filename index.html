@@ -3,33 +3,52 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Voyage Streams</title>
+    <title>Melina - AI Voice Chat</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='style.css'>
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&family=Permanent+Marker&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&family=Permanent+Marker&display=swap" rel="stylesheet">
 </head>
 <body>
-
     <main>
-
-     
-
-
-        <!-- <div id="users-list"></div> -->
-
         <h1 id="site-title">MELINA</h1>
+
+        <!-- AI Chat Container -->
+        <div id="ai-chat-container">
+            <div style="display: flex; align-items: center; margin-bottom: 15px; border-bottom: 2px solid #f7cdd4; padding-bottom: 10px;">
+                <div style="background: #f7cdd4; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; margin-right: 10px;">
+                    <img src="./assets/microphone.svg" alt="AI" style="width: 24px; height: 24px;">
+                </div>
+                <h3 style="margin: 0; color: #333; font-size: 18px; font-weight: 600;">AI Voice Assistant</h3>
+            </div>
+
+            <div id="ai-chat-messages">
+                <p style="margin: 0; color: #666; font-size: 14px; line-height: 1.5;">Hi! I'm your AI voice assistant. How can I help you today?</p>
+            </div>
+
+            <button id="startVoice" class="ai-chat-send-btn" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                <img src="./assets/microphone.svg" alt="mic" style="width: 18px; height: 18px;">
+                Start Voice Chat
+            </button>
+
+            <div class="ai-chat-input-wrapper">
+                <input type="text" class="ai-chat-input" placeholder="Type your message...">
+                <button class="ai-chat-send-btn">Send</button>
+            </div>
+        </div>
+
+        <!-- Join Wrapper -->
         <div id="join-wrapper">
-            <input id="username" type="text" placeholder="Enter your name..." />
+            <h2 style="color: #333; margin-bottom: 20px; font-size: 24px;">Join Video Chat</h2>
+            <input id="username" type="text" placeholder="Enter your name..."/>
             <button id="join-btn">Join Friends</button>
         </div>
-        <div id="user-streams" ></div>
-        
 
+        <!-- Video Streams -->
+        <div id="user-streams"></div>
 
-        <!-- Wrapper for join button -->
+        <!-- Footer Controls -->
         <div id="footer">
             <div class="icon-wrapper">
                 <img class="control-icon" id="camera-btn" src="./assets/video.svg" />
@@ -45,12 +64,6 @@
                 <img class="control-icon" id="leave-btn" src="./assets/leave.svg" />
                 <p>Leave</p>
             </div>
-            
-           
-            
-            
-        </div>
-
     </main>
 
     <script src="https://download.agora.io/sdk/release/AgoraRTC_N.js"></script>

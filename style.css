@@ -4,52 +4,108 @@ body {
     background-color: #f7cdd4;
     color: rgb(53, 70, 85);
     font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
 }
 
 main {
     width: 1400px;
     margin: 0 auto;
     height: 75vh;
+    position: relative;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 #site-title {
     font-family: 'fantasy', cursive;
+    text-align: center;
+    font-size: 2.5rem;
+    margin: 20px 0;
 }
 
-
-#join-wrapper{
+#join-wrapper {
     display: flex;
     flex-direction: column;
     position: fixed;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 400px;
+    z-index: 100;
 }
 
-
-#username{
+#username {
     padding: 20px;
     font-size: 18px;
     border-radius: 10px;
-    border:none;
+    border: 2px solid #f7cdd4;
     margin: 10px;
-}
-
-.volume-icon{
-    height:20px;
-    width:20px;
+    width: calc(100% - 20px);
+    box-sizing: border-box;
 }
 
 #join-btn {
-
     background-color: #1f1f1f8e;
     border: none;
     color: #fff;
     font-size: 22px;
     padding: 20px 30px;
     cursor: pointer;
+    border-radius: 10px;
+    width: calc(100% - 20px);
+    margin: 10px;
 }
 
+/* AI Chat Container */
+#ai-chat-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    padding: 20px;
+    width: 300px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+#ai-chat-messages {
+    height: 150px;
+    overflow-y: auto;
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.ai-chat-input-wrapper {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.ai-chat-input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    outline: none;
+}
+
+.ai-chat-send-btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    background: #f7cdd4;
+    color: #333;
+    cursor: pointer;
+}
 
 #user-streams {
     display: grid;
@@ -57,7 +113,6 @@ main {
     gap: 1em;
     height: 100%;
 }
-
 
 .video-player {
     width: 100%;
@@ -72,7 +127,12 @@ main {
     margin: 0;
     background-color: #1f1f1f8e;
     border-radius: 10px;
+    aspect-ratio: 16/9;
+}
 
+.volume-icon {
+    height: 20px;
+    width: 20px;
 }
 
 .user-uid {
@@ -90,9 +150,8 @@ main {
     font-size: 18px;
 }
 
-
 #footer {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     left: 0;
     display: none;
@@ -100,6 +159,8 @@ main {
     column-gap: 1em;
     width: 100%;
     height: 100px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
 }
 
 .icon-wrapper {
@@ -117,10 +178,191 @@ main {
     border-radius: 10px;
 }
 
-
-@media screen and (max-width:1400px) {
+/* Responsive Design */
+@media screen and (max-width: 1400px) {
     main {
         width: 90%;
         margin: 0 auto;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    #user-streams {
+        grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    }
+    
+    #ai-chat-container {
+        width: 280px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #user-streams {
+        grid-template-columns: 1fr;
+    }
+    
+    #ai-chat-container {
+        width: 90%;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 120px;
+        top: auto;
+        right: auto;
+    }
+    
+    .video-containers {
+        height: 300px;
+    }
+    
+    #site-title {
+        font-size: 2rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    #join-wrapper {
+        width: 95%;
+        padding: 20px;
+    }
+    
+    #username {
+        padding: 15px;
+        font-size: 16px;
+    }
+    
+    #join-btn {
+        padding: 15px;
+        font-size: 18px;
+    }
+    
+    .control-icon {
+        padding: 10px;
+        height: 25px;
+        width: 25px;
+    }
+    
+    .video-containers {
+        height: 200px;
+    }
+    
+    .user-uid {
+        font-size: 14px;
+    }
+}
+
+/* Landscape Mode */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+    #join-wrapper {
+        position: absolute;
+        height: auto;
+    }
+    
+    .video-containers {
+        height: 200px;
+    }
+    
+    #ai-chat-container {
+        height: 200px;
+    }
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1400px) {
+    main {
+        width: 90%;
+        margin: 0 auto;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    #user-streams{
+        grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    }
+    #ai-chat container {
+        width: 280px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #user-streams {
+        grid-template-columns: 1fr;
+    }
+
+    #ai-chat-container {
+        position: fixed;
+        width: 90%;
+        max-width: 90%; /* Ensure it doesn't exceed the screen width */
+        top: auto;
+        right: auto;
+        bottom: 120px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    #join-wrapper {
+        position: relative; /* Adjust positioning */
+        top: auto;
+        left: auto;
+        transform: none;
+        margin: 20px auto; /* Add margin for spacing */
+        width: 90%; /* Make it responsive */
+        max-width: 400px; /* Limit the maximum width */
+    }
+
+    .video-containers {
+        height: 300px;
+    }
+
+    #site-title {
+        font-size: 2rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    #join-wrapper {
+        width: 95%;
+        padding: 20px;
+    }
+    
+    #username {
+        padding: 15px;
+        font-size: 16px;
+    }
+    
+    #join-btn {
+        padding: 15px;
+        font-size: 18px;
+    }
+    
+    .control-icon {
+        padding: 10px;
+        height: 25px;
+        width: 25px;
+    }
+    
+    .video-containers {
+        height: 200px;
+    }
+    
+    .user-uid {
+        font-size: 14px;
+    }
+}
+
+/* Landscape Mode */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+    #join-wrapper {
+        position: absolute;
+        height: auto;
+    }
+    
+    .video-containers {
+        height: 200px;
+    }
+    
+    #ai-chat-container {
+        height: auto; /* Adjust height */
+        max-height: 300px; /* Limit maximum height */
+        overflow-y: auto; /* Enable scrolling if content overflows */
     }
 }
